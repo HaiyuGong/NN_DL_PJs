@@ -9,10 +9,11 @@ from utils import cross_entropy_l2_loss, accuracy
 
 def test(model, X_test, y_test, lambda_, save_prefix):
     model.load(f'{save_prefix}_best_model.npz')
-    y_pred_val = model.forward(X_test)
-    loss_test = cross_entropy_l2_loss(y_test, y_pred_val, lambda_, model)
-    acc_test = accuracy(y_test, y_pred_val)
+    y_pred_test = model.forward(X_test)
+    loss_test = cross_entropy_l2_loss(y_test, y_pred_test, lambda_, model)
+    acc_test = accuracy(y_test, y_pred_test)
     print(f'Test loss: {loss_test:.4f}, Test accuracy: {acc_test:.4f}')
+    return loss_test, acc_test
 
 def plot_loss_acc(save_prefix):
     npzfile = np.load(f'{save_prefix}_loss_acc.npz')
@@ -41,6 +42,6 @@ def plot_loss_acc(save_prefix):
 if __name__ == '__main__':
     X_test, y_test = mnist_reader.load_mnist('../data/fashion', kind='t10k')
 
-    model = ThreeLayerNN(784, 100, 100, 10, activation='sigmoid')
-    test(model, X_test, y_test, lambda_=0.001, save_prefix='weights/0idx_200epochs_100H1_100H2_0.001lambda_0.002lr_Falselr_decay')
-    plot_loss_acc('weights/0idx_200epochs_100H1_100H2_0.001lambda_0.002lr_Falselr_decay')
+    model = ThreeLayerNN(784, 150, 150, 10, activation='sigmoid')
+    test(model, X_test, y_test, lambda_=0.001, save_prefix='weights2/4idx_300epochs_150H1_150H2_0.05lambda_0.002lr_Truelr_decay')
+    plot_loss_acc('weights2/4idx_300epochs_150H1_150H2_0.05lambda_0.002lr_Truelr_decay')
