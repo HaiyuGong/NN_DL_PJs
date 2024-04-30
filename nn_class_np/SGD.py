@@ -1,4 +1,5 @@
 import numpy as np
+
 class SGD:
     def __init__(self, model, learning_rate, lr_decay = True):
         self.model = model

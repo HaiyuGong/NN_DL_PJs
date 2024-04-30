@@ -1,7 +1,6 @@
 # Adapted from https://github.com/zalandoresearch/fashion-mnist/blob/master/utils/mnist_reader.py
 # Data source: https://github.com/zalandoresearch/fashion-mnist/tree/master/data/fashion
 
-
 import os
 import gzip
 import numpy as np
@@ -25,4 +24,3 @@ def load_mnist(path, kind='train'):
                                offset=16).reshape(len(labels), 784)
 
     return images / 255.0, np.eye(10)[labels]
-    # return images, labels
